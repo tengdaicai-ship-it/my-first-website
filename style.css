@@ -17,3 +17,8 @@ ul, ol {
     padding: 20px;
     border-radius: 10px;
 }
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
