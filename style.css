@@ -1,0 +1,19 @@
+body {
+    font-family: sans-serif;
+    background-color: #f5f5f5;
+    margin: 40px;
+}
+
+h1 {
+    color: darkblue;
+}
+
+h2 {
+    color: teal;
+}
+
+ul, ol {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
