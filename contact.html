@@ -8,7 +8,7 @@
     <body>
         <div class="container">
             <h1>お問い合わせ</h1>
-            <from>
+            <form id="contact-form">
                 <label>お名前</label>
                 <input type="text" name="name"><br><br>
 
@@ -16,14 +16,15 @@
                 <input type="email" name="email"><br><br>
 
                 <label>お問い合わせ内容</label><br>
-                <textarea name="massage" rows="5"></textarea><br><br>
+                <textarea name="message" rows="5"></textarea><br><br>
 
                 <button type="submit" class="btn">送信</button>
-            </from>
-            
-            <P>現在準備中です。</P>
+            </form>
+
+            <p id="message"></p>
 
             <a href="index.html" class="btn">トップへ戻る</a>
         </div>
+    <script src="script.js"></script>
     </body>
 </html>
