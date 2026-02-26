@@ -4,13 +4,25 @@ document.addEventListener("DOMContentLoaded", function()
     const form = document.getElementById("contact-form");
     const message = document.getElementById("message");
 
+    const nameInput = form.elements["name"];
+    const emailInput = form.elements["email"];
+    const messageInput = form.elements["message"];
+
+    nameInput.addEventListener("input", function() {
+            toggleRequired(nameInput);
+        });
+
+    messageInput.addEventListener("input", function() {
+            toggleRequired(messageInput);
+        });
+
+    emailInput.addEventListener("input", function() {
+            validateEmailLive(emailInput);
+        });
+
     form.addEventListener("submit", function(event) {
         event.preventDefault(); 
-
-        const nameInput = form.elements["name"];
-        const emailInput = form.elements["email"];
-        const messageInput = form.elements["message"];
-
+             
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
         const messageText = messageInput.value.trim();
@@ -57,6 +69,34 @@ document.addEventListener("DOMContentLoaded", function()
             input.classList.remove("error");
             input.classList.remove("success");
         });
+    }
+
+    function toggleRequired(input) {
+        if (input.value.trim() === "") {
+            input.classList.add("error");
+            input.classList.remove("success");
+        } else {
+            input.classList.remove("error");
+            input.classList.add("success");
+        }
+    }
+
+    function validateEmailLive(input) {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (input.value.trim() === "") {
+            input.classList.add("error");
+            input.classList.remove("success")
+            return;
+        }
+
+        if (!emailPattern.test(input.value.trim())) {
+            input.classList.add("error");
+            input.classList.remove("success");
+        } else {
+            input.classList.remove("error");
+            input.classList.add("success");
+        }
     }
 
 });
