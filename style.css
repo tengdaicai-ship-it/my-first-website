@@ -36,3 +36,11 @@ ul, ol {
 .bin:hover {
     background-color: teal;
 }
+
+.error {
+    border: 2px solid red;
+}
+
+.success {
+    border: 2px solid green;
+}
