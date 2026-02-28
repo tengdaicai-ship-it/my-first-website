@@ -5,7 +5,8 @@
 body {
     font-family: sans-serif;
     background-color: #f5f5f5;
-    margin: 40px;
+    margin: 0;
+    padding: 40px;
 }
 
 .container {
@@ -28,12 +29,36 @@ ul, ol {
     border-radius: 10px;
 }
 
+input:focus:not(.error):not(.success),
+textarea:focus:not(.error):not(.success) {
+    outline: none;
+    border-color: teal;
+}
+
 input, textarea {
     width: 100%;
     padding: 8px;
-    margin-bottom: 15px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
+    margin-bottom: 5px;
+}
+
+input.error,
+textarea.error {
+    border-color: red;
+}
+
+input.success,
+textarea.success {
+    border-color: green;
+}
+
+.error-message {
+    color: red;
+    font-size:14px;
+    margin-top: 5px;
+    min-height: 18px;
+    margin-bottom: 10px;
 }
 
 .btn {
@@ -46,16 +71,9 @@ input, textarea {
     margin-top: 10px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 .btn:hover {
     background-color: teal;
-}
-
-.error {
-    border: 2px solid red;
-}
-
-.success {
-    border: 2px solid green;
 }

@@ -9,6 +9,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const emailInput = form.elements["email"];
     const messageInput = form.elements["message"];
 
+    const nameError = document.getElementById("name-error");
+    const emailError = document.getElementById("email-error");
+    const messageError = document.getElementById("message-error");
+
     nameInput.addEventListener("input", function() {
             toggleRequired(nameInput);
         });
@@ -28,21 +32,34 @@ document.addEventListener("DOMContentLoaded", function() {
         const email = emailInput.value.trim();
         const messageText = messageInput.value.trim();
 
+        clearErrors();
         clearStyles(nameInput, emailInput, messageInput);
 
-        if (!name || !email || !messageText) {
-            showError("すべて入力してください");
-            if (!name) nameInput.classList.add("error");
-            if (!email) emailInput.classList.add("error");
-            if (!messageText) messageInput.classList.add("error");
-            return;
+        let hasError = false;
+
+        if (!name) {
+            showFieldError(nameError,"名前を入力してください");
+            nameInput.classList.add("error");
+            hasError = true;
         }
 
-        if (!emailPattern.test(email)) {
-            showError("正しいメールアドレスを入力してください")
-            emailInput.classList.add("error")
-            return;
+        if (!email) {
+            showFieldError(emailError, "メールを入力してください");
+            emailInput.classList.add("error");
+            hasError = true;
+        } else if (!emailPattern.test(email)) {
+            showFieldError(emailError, "正しいメールアドレスを入力してください");
+            emailInput.classList.add("error");
+            hasError = true;
         }
+
+        if (!messageText) {
+            showFieldError(messageError, "内容を入力してください");
+            messageInput.classList.add("error");
+            hasError = true;
+        }
+
+        if (hasError) return;
 
         showSuccess("送信しました");
         nameInput.classList.add("success");
@@ -61,6 +78,16 @@ document.addEventListener("DOMContentLoaded", function() {
     function showSuccess(text) {
         message.textContent = text;
         message.style.color = "green";
+    }
+
+    function clearErrors() {
+        nameError.textContent = "";
+        emailError.textContent = "";
+        messageError.textContent = "";
+    }
+
+    function showFieldError(Field, text) {
+        Field.textContent = text;
     }
 
     function clearStyles(...inputs) {
