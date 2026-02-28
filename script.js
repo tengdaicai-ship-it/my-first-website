@@ -1,8 +1,9 @@
-document.addEventListener("DOMContentLoaded", function()
-{
+document.addEventListener("DOMContentLoaded", function() {
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     const form = document.getElementById("contact-form");
-    const message = document.getElementById("message");
+    const message = document.getElementById("result-message");
 
     const nameInput = form.elements["name"];
     const emailInput = form.elements["email"];
@@ -26,8 +27,6 @@ document.addEventListener("DOMContentLoaded", function()
         const name = nameInput.value.trim();
         const email = emailInput.value.trim();
         const messageText = messageInput.value.trim();
-
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         clearStyles(nameInput, emailInput, messageInput);
 
@@ -82,7 +81,6 @@ document.addEventListener("DOMContentLoaded", function()
     }
 
     function validateEmailLive(input) {
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (input.value.trim() === "") {
             input.classList.add("error");
