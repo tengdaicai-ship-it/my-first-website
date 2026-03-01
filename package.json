@@ -1,0 +1,24 @@
+{
+  "name": "my-first-website",
+  "version": "1.0.0",
+  "description": "HTML / CSS / JavaScript を用いて制作したお問い合わせフォームアプリです。\r 入力内容に応じたリアルタイムバリデーションおよび送信時の入力チェックを実装しています。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tengdaicai-ship-it/my-first-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/tengdaicai-ship-it/my-first-website/issues"
+  },
+  "homepage": "https://github.com/tengdaicai-ship-it/my-first-website#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

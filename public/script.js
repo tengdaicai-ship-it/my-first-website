@@ -61,13 +61,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (hasError) return;
 
-        showSuccess("送信しました");
-        nameInput.classList.add("success");
-        emailInput.classList.add("success")
-        messageInput.classList.add("success");
-    
-        
-        form.reset();
+        fetch("/api/test")
+            .then(response => response.json())
+            .then(data => {
+                console.log("Server response:", data);
+                showSuccess("サーバー接続成功");
+                form.reset();
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                showError("サーバー接続失敗");
+            });
+            
     });
 
     function showError(text) {
