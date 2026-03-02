@@ -61,11 +61,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (hasError) return;
 
-        fetch("/api/test")
+        fetch("/api/contact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                message: messageText
+            })
+        })
             .then(response => response.json())
             .then(data => {
                 console.log("Server response:", data);
-                showSuccess("サーバー接続成功");
+                showSuccess("送信成功（サーバー保存）");
                 form.reset();
             })
             .catch(error => {

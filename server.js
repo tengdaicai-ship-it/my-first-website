@@ -18,3 +18,9 @@ app.get("/api/test", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+app.post("/api/contact", (req, res) => {
+  console.log("Received data:", req.body);
+
+  res.json({ status: "success" });
+});
