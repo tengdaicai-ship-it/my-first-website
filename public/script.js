@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         if (hasError) return;
-
+        
         fetch("/api/contact", {
             method: "POST",
             headers: {
@@ -84,6 +84,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             
     });
+
+    const messages = [];
 
     function showError(text) {
         message.textContent = text;

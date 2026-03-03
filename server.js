@@ -4,23 +4,32 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-// JSONを受け取れるようにする
-app.use(express.json());
+const messages = []
 
-// publicフォルダを静的配信
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-// テストAPI
-app.get("/api/test", (req, res) => {
-  res.json({ message: "API is working" });
+app.post("/api/contact", (req, res) => {
+  const { name, email, message } = req.body;
+
+  const newMessage = {
+    id: Date.now(),
+    name,
+    email,
+    message
+  };    
+
+  messages.push(newMessage);
+
+  console.log("Saved:", newMessage);
+
+  res.json({ status: "success" });
+});
+
+app.get("/api/messages", (req, res) => {
+  res.json(messages);
 });
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
-});
-
-app.post("/api/contact", (req, res) => {
-  console.log("Received data:", req.body);
-
-  res.json({ status: "success" });
 });
