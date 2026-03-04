@@ -85,8 +85,6 @@ document.addEventListener("DOMContentLoaded", function() {
             
     });
 
-    const messages = [];
-
     function showError(text) {
         message.textContent = text;
         message.style.color = "red";
