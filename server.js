@@ -4,7 +4,7 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-const messages = [];
+let messages = [];
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -21,9 +21,7 @@ app.post("/api/contact", (req, res) => {
 
   messages.push(newMessage);
 
-  console.log("Saved:", newMessage);
-
-  res.json({ status: "success" });
+  res.json({ success: true });
 });
 
 app.get("/api/messages", (req, res) => {
@@ -33,15 +31,9 @@ app.get("/api/messages", (req, res) => {
 app.delete("/api/messages/:id", (req, res) => {
   const id = Number(req.params.id);
 
-  const index = messages.findIndex(m => m.id === id);
+  messages = messages.filter(msg => msg.id !== id);
 
-  if (index === -1) {
-    return res.status(404).json({ error: "Message not found"});
-  }
-
-  messages.splice(index, 1);
-
-  res.json({ status: "deleted" });
+  res.json({ success: true });
 });
 
 app.listen(PORT, () => {

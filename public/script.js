@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const form = document.getElementById("contact-form");
     const message = document.getElementById("result-message");
+    const messagesList = document.getElementById("messages-list");
 
     const nameInput = form.elements["name"];
     const emailInput = form.elements["email"];
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
     form.addEventListener("submit", function(event) {
+
         event.preventDefault(); 
              
         const name = nameInput.value.trim();
@@ -77,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Server response:", data);
                 showSuccess("送信成功（サーバー保存）");
                 form.reset();
+                loadmessages();
             })
             .catch(error => {
                 console.error("Error:", error);
@@ -84,6 +87,44 @@ document.addEventListener("DOMContentLoaded", function() {
             });
             
     });
+
+    async function loadMessages() {
+
+        const res = await fetch("/api/contact");
+
+        const messages = await res.json();
+
+        messagesList.innerHTML = "";
+
+        message.forEach(msg => {
+
+            const div = document.createElement("div");
+
+            div.className = "message-card";
+
+            div.innerHTML = `
+            <p><strong>Name:</strong> ${msg.name}</p>
+            <p><strong>:Email</strong> ${msg.Email}</p>
+            <p><strong>Message:</strong> ${msg.message}</p>
+            <button onclick="deleteMessage(${msg.id})">Delete</button>
+            <hr>
+            `;
+
+            messagesList.appendChild(div);
+
+        });
+        
+    }
+
+    window.deleteMessage = async function (id) {
+
+        await fetch(`/api/contact/${id}`, {
+            method: "DELETE"
+        });
+
+        loadMessages();
+        
+    };
 
     function showError(text) {
         message.textContent = text;
@@ -139,4 +180,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    loadMessages();
+    
 });
