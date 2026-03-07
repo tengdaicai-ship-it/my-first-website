@@ -1,49 +1,128 @@
-# Contact Form App
+# Contact Manager
 
-## 概要
-HTML / CSS / JavaScript を用いて制作したお問い合わせフォームアプリです。
-入力内容に応じたリアルタイムバリデーションおよび送信時の入力チェックを実装しています。
+A simple contact form system built with **Node.js, Express, and Vanilla JavaScript**.
+A simple full-stack contact management app built for learning Express and REST APIs.
 
-## 制作目的
-JavaScriptによるDOM操作とロジック設計の理解を深めることを目的に制作しました。
-特に、条件分岐が増えた際のコードの可読性や保守性を意識しながら実装しています。
+Users can submit messages from a contact form, and the admin page allows viewing and deleting submitted messages.
 
-## 使用技術
-- HTML5
-- CSS3
-- JavaScript（ES6）
-- Git（バージョン管理）
+---
 
-## 主な機能
-- 必須入力チェック
-- メールアドレス形式の正規表現チェック
-- リアルタイム入力検証（inputイベント）
-- エラー／成功状態のスタイル切り替え
-- フォーム送信時の最終バリデーション
-- 関数分割による責務分離
+## Screenshots
 
-## 工夫した点
-当初は条件分岐を一つの処理内にまとめて実装していましたが、ロジックが複雑化し可読性が低下しました。
-そのため、以下のように責務ごとに関数を分割しました。
+### Contact Form
 
-- 入力チェック処理
-- エラーメッセージ表示処理
-- スタイル制御処理
+![Contact Form](screenshots/contact.png)
 
-また、メールアドレスの正規表現は共通定数として定義し、DRY原則を意識して設計しました。
+### Admin Dashboard
 
-## 苦労した点
-条件分岐が増えるにつれてコードが煩雑になり、想定外の挙動が発生しました。
-処理の流れを書き出して整理し、関数単位で再設計することで構造を改善しました。
-この経験から、単に動かすだけでなく、保守性を考えた設計の重要性を学びました。
+![Admin Page](screenshots/admin.png)
 
-## 今後の改善点
-- バリデーションロジックの共通化
-- クラス構造へのリファクタリング
-- エラーメッセージ管理の改善
-- 単体テスト導入
+---
 
-## 実行方法
-1. 本リポジトリをクローン
-2. index.html をブラウザで開く
-3. contact.html からフォーム動作を確認
+## Features
+
+- Submit messages from a contact form
+- View submitted messages in the admin page
+- Delete messages from the admin dashboard
+
+CRUD status
+
+- Create ✔
+- Read ✔
+- Delete ✔
+- Update ✖
+
+---
+
+## Tech Stack
+
+- Node.js
+- Express
+- Vanilla JavaScript
+- HTML
+
+---
+
+## Project Structure
+---
+my-first-website
+│
+├ server.js
+│
+└ public
+   ├ contact.html
+   ├ admin.html
+   └ admin.js
+---
+
+## API Endpoints
+
+### POST /api/contact
+
+Create a message
+
+Example request
+
+---json
+{
+"name": "John",
+"email": "john@example.com",
+"message": "Hello"
+}
+---
+
+### GET /api/messages
+
+Retrieve all messages.
+
+---
+
+### DELETE /api/messages/:id
+
+Delete a message.
+
+Example
+---
+DELETE /api/messages/1772624619725
+---
+
+## How to Run
+
+Clone the repository
+
+git clone https://github.com/yourname/my-first-website.git
+
+Install dependencies
+
+npm install
+
+Start the server
+
+node server.js
+
+Open in browser
+
+http://localhost:3000/contact.html
+
+http://localhost:3000/admin.html
+
+---
+
+## Learning Goals
+
+This project was built to practice:
+
+- REST API development with Express
+- Fetch API
+- DOM manipulation
+- CRUD fundamentals
+- Simple admin dashboard
+
+---
+
+## Future Improvements
+
+- Add timestamps to messages
+- Add delete confirmation dialog
+- Improve admin UI with CSS
+- Store messages in a database
