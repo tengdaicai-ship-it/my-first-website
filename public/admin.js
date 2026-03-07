@@ -20,9 +20,17 @@ async function loadMessages() {
         const text = document.createElement("td");
         text.textContent = message.message;
 
+        const del = document.createElement("td");
+
+        const button = document.createElement("button");
+        button.textContent = "Delete";
+
+        del.appendChild(button);
+
         tr.appendChild(name);
         tr.appendChild(email);
         tr.appendChild(text);
+        tr.appendChild(del);
 
         list.appendChild(tr);
 
