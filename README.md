@@ -21,9 +21,11 @@ Users can submit messages from a contact form, and the admin page allows viewing
 
 ## Features
 
-- Submit messages from a contact form
-- View submitted messages in the admin page
-- Delete messages from the admin dashboard
+- Send contact messages
+- View submitted messages
+- Delete messages
+- Client-side form validation
+- REST API (POST / GET / DELETE)
 
 CRUD status
 
@@ -92,6 +94,15 @@ my-first-website
 ```
 
 ## API Endpoints
+
+POST /api/contact
+Create a new message
+
+GET /api/contact
+Get all messages
+
+DELETE /api/contact/:id
+Delete a message
 
 ### POST /api/contact
 
