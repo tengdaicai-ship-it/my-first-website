@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.post("/api/contact", (req, res) => {
+
   const { name, email, message } = req.body;
 
   const newMessage = {
@@ -17,23 +18,28 @@ app.post("/api/contact", (req, res) => {
     name,
     email,
     message
-  };    
+  };
 
   messages.push(newMessage);
 
   res.json({ success: true });
+
 });
 
-app.get("/api/messages", (req, res) => {
+app.get("/api/contact", (req, res) => {
+
   res.json(messages);
+
 });
 
-app.delete("/api/messages/:id", (req, res) => {
+app.delete("/api/contact/:id", (req, res) => {
+
   const id = Number(req.params.id);
 
   messages = messages.filter(msg => msg.id !== id);
 
   res.json({ success: true });
+
 });
 
 app.listen(PORT, () => {

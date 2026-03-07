@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("Server response:", data);
                 showSuccess("送信成功（サーバー保存）");
                 form.reset();
-                loadmessages();
+                loadMessages();
             })
             .catch(error => {
                 console.error("Error:", error);
@@ -94,17 +94,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const messages = await res.json();
 
+        if (!Array.isArray(messages)) {
+            console.error("API did not return array:", messages);
+            return;
+        }
+
         messagesList.innerHTML = "";
 
-        message.forEach(msg => {
+        messages.forEach(msg => {
 
             const div = document.createElement("div");
 
-            div.className = "message-card";
-
             div.innerHTML = `
             <p><strong>Name:</strong> ${msg.name}</p>
-            <p><strong>:Email</strong> ${msg.Email}</p>
+            <p><strong>Email:</strong> ${msg.email}</p>
             <p><strong>Message:</strong> ${msg.message}</p>
             <button onclick="deleteMessage(${msg.id})">Delete</button>
             <hr>
@@ -118,13 +121,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.deleteMessage = async function (id) {
 
-        await fetch(`/api/contact/${id}`, {
-            method: "DELETE"
-        });
+        try {
 
-        loadMessages();
+            await fetch(`/api/contact/${id}`, {
+                method: "DELETE"
+            });
+
+            loadMessages();
         
-    };
+        } catch (error) {
+
+            console.error("Delete failed:", error);
+
+        }
+    
+    }
 
     function showError(text) {
         message.textContent = text;
@@ -142,8 +153,8 @@ document.addEventListener("DOMContentLoaded", function() {
         messageError.textContent = "";
     }
 
-    function showFieldError(Field, text) {
-        Field.textContent = text;
+    function showFieldError(field, text) {
+        field.textContent = text;
     }
 
     function clearStyles(...inputs) {
