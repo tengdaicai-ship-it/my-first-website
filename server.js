@@ -30,6 +30,20 @@ app.get("/api/messages", (req, res) => {
   res.json(messages);
 });
 
+app.delete("/api/messages/:id", (req, res) => {
+  const id = Number(req.params.id);
+
+  const index = messages.findIndex(m => m.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Message not found"});
+  }
+
+  messages.splice(index, 1);
+
+  res.json({ status: "deleted" });
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
