@@ -43,8 +43,44 @@ CRUD status
 
 ---
 
+## System Architecture
+
+```
+Browser
+   │
+   │ fetch API
+   ▼
+Express Server (server.js)
+   │
+   │ REST API
+   ▼
+messages[] (in-memory storage)
+```
+
+## Data Flow
+
+```
+Contact Form
+      │
+      ▼
+POST /api/contact
+      │
+      ▼
+messages[]
+      │
+      ▼
+GET /api/messages
+      │
+      ▼
+Admin Table
+      │
+      ▼
+DELETE /api/messages/:id
+```
+
 ## Project Structure
----
+
+```
 my-first-website
 │
 ├ server.js
@@ -53,7 +89,7 @@ my-first-website
    ├ contact.html
    ├ admin.html
    └ admin.js
----
+```
 
 ## API Endpoints
 
@@ -63,13 +99,13 @@ Create a message
 
 Example request
 
----json
+```json
 {
 "name": "John",
 "email": "john@example.com",
 "message": "Hello"
 }
----
+```
 
 ### GET /api/messages
 
@@ -82,9 +118,9 @@ Retrieve all messages.
 Delete a message.
 
 Example
----
+```
 DELETE /api/messages/1772624619725
----
+```
 
 ## How to Run
 
@@ -126,3 +162,26 @@ This project was built to practice:
 - Add delete confirmation dialog
 - Improve admin UI with CSS
 - Store messages in a database
+
+---
+
+## Data Flow
+
+```
+Contact Form
+      │
+      ▼
+POST /api/contact
+      │
+      ▼
+messages[]
+      │
+      ▼
+GET /api/messages
+      │
+      ▼
+Admin Table
+      │
+      ▼
+DELETE /api/messages/:id
+```
