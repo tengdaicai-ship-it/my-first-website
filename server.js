@@ -16,6 +16,12 @@ app.post("/api/contact", (req, res) => {
 
   const { name, email, message } = req.body;
 
+  if (!name || !email || !message) {
+    return res.status(400).json({
+      error: "All fields are required"
+    });
+  }
+
   const newMessage = {
     id: Date.now(),
     name,
@@ -31,6 +37,14 @@ app.post("/api/contact", (req, res) => {
   );
 
   res.json({ success: true });
+
+  const emailRegex = /\S+@\S+\.\S+/;
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({
+      error: "Invalid email format"
+    });
+  }
 
 });
 
