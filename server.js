@@ -5,8 +5,8 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-const messages = JSON.parse(
-  fs.readFileSync("messages.json")
+let messages = JSON.parse(
+  fs.readFileSync("messages.json", "utf8")
 );
 
 app.use(express.json());
