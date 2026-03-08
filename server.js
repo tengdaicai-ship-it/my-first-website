@@ -22,6 +22,14 @@ app.post("/api/contact", (req, res) => {
     });
   }
 
+  const emailRegex = /\S+@\S+\.\S+/;
+
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({
+      error: "Invalid email format"
+    });
+  }
+
   const newMessage = {
     id: Date.now(),
     name,
@@ -37,15 +45,7 @@ app.post("/api/contact", (req, res) => {
   );
 
   res.json({ success: true });
-
-  const emailRegex = /\S+@\S+\.\S+/;
-
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({
-      error: "Invalid email format"
-    });
-  }
-
+  
 });
 
 app.get("/api/contact", (req, res) => {
