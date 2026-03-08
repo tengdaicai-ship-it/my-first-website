@@ -5,9 +5,15 @@ const path = require("path");
 const app = express();
 const PORT = 3000;
 
-let messages = JSON.parse(
-  fs.readFileSync("messages.json", "utf8")
-);
+let messages = [];
+
+try {
+  const date = fs.readFileSync("messages.json", "utf8");
+  messages = JSON.parse(date);
+} catch (error) {
+  console.error("Failed to read messages.json:", error);
+  messages = [];
+};
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -39,10 +45,17 @@ app.post("/api/contact", (req, res) => {
 
   messages.push(newMessage);
 
-  fs.writeFileSync(
-    "messages.json",
-    JSON.stringify(messages, null, 2)
-  );
+  try {
+    fs.writeFileSync(
+      "messages.json",
+      JSON.stringify(messages, null, 2)
+    );
+  } catch (error) {
+    console.error("Failed to save messages:", error);
+    return res.status(500).json({
+      error: "Failed to save message"
+    });
+  }
 
   res.json({ success: true });
   
@@ -60,10 +73,17 @@ app.delete("/api/contact/:id", (req, res) => {
 
   messages = messages.filter(msg => msg.id !== id);
 
-  fs.writeFileSync(
-    "messages.json",
-    JSON.stringify(messages, null, 2)
-  );
+  try {
+    fs.writeFileSync(
+      "messages.json",
+      JSON.stringify(messages, null, 2)
+    );
+  } catch (error) {
+    console.error("Delete save failed:", error);
+    return res.status(500).json({
+      error: "Failed to dalete message"
+    });
+  }
 
   res.json({ success: true });
 
