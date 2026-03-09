@@ -58,7 +58,9 @@ router.post("/", (req, res) => {
 
 router.get("/", (req, res) => {
 
-    res.json(messages);
+    const sortedMessages = [...messages].sort((a, b) => b.id - a.id);
+
+    res.json(sortedMessages);
 
 });
 
