@@ -121,6 +121,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     window.deleteMessage = async function (id) {
 
+        if (!confirm("このメッセージを削除しますか？")) {
+            return;
+        }
+
         try {
 
             await fetch(`/api/contact/${id}`, {
