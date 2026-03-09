@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("contact-form");
     const message = document.getElementById("result-message");
     const messagesList = document.getElementById("messages-list");
+    const messagesCount = document.getElementById("message-count");
 
     const nameInput = form.elements["name"];
     const emailInput = form.elements["email"];
@@ -100,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         messagesList.innerHTML = "";
+        
+        messagesCount.textContent = `Messages (${messages.length})`;
 
         messages.forEach(msg => {
 

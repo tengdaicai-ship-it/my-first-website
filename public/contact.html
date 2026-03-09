@@ -17,14 +17,15 @@
             <input type="email" id="email" name="email">
             <p class="error-message" id="email-error"></p>
 
-            <label for="messageInput">お問い合わせ内容</label>
-            <textarea id="messageInput" name="message" rows="5"></textarea>
+            <label for="message">お問い合わせ内容</label>
+            <textarea id="message" name="message" rows="5"></textarea>
             <p class="error-message" id="message-error"></p>
 
             <button type="submit" class="btn">送信</button>
         </form>
 
-        <h2>Messages</h2>
+        <h2 id="message-count">Messages (0)</h2>
+
         <div id="messages-list"></div>
 
         <p id="result-message"></p>
