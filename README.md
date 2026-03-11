@@ -1,9 +1,10 @@
 # Contact Manager
 
-A simple contact form system built with **Node.js, Express, and Vanilla JavaScript**.
-A simple full-stack contact management app built for learning Express and REST APIs.
+A simple full-stack contact management application built with Node.js, Express, and Vanilla JavaScript.
 
-Users can submit messages from a contact form, and the admin page allows viewing and deleting submitted messages.
+Users can submit messages through a contact form, and the application displays stored messages with options to delete them.
+
+This project was created to practice building a REST API with Express and connecting it to a simple frontend using the Fetch API.
 
 ---
 
@@ -21,11 +22,17 @@ Users can submit messages from a contact form, and the admin page allows viewing
 
 ## Features
 
-- Send contact messages
+- Submit messages through a contact form
 - View submitted messages
 - Delete messages
 - Client-side form validation
-- REST API (POST / GET / DELETE)
+- Server-side validation
+- JSON file persistence (messages.json)
+- Express Router structure
+- Delete confirmation dialog
+- Message count display
+- Auto-hide success message
+- Messages sorted by newest first
 
 CRUD status
 
@@ -41,7 +48,7 @@ CRUD status
 - Node.js
 - Express
 - Vanilla JavaScript
-- HTML
+- HTML / CSS
 
 ---
 
@@ -54,9 +61,13 @@ Browser
    ▼
 Express Server (server.js)
    │
-   │ REST API
+   │ Router
    ▼
-messages[] (in-memory storage)
+routes/contact.js
+   │
+   │ File storage
+   ▼
+messages.json
 ```
 
 ## Data Flow
@@ -68,16 +79,16 @@ Contact Form
 POST /api/contact
       │
       ▼
-messages[]
+messages.json
       │
       ▼
-GET /api/messages
+GET /api/contact
       │
       ▼
-Admin Table
+Message List
       │
       ▼
-DELETE /api/messages/:id
+DELETE /api/contact/:id
 ```
 
 ## Project Structure
@@ -86,23 +97,18 @@ DELETE /api/messages/:id
 my-first-website
 │
 ├ server.js
+├ messages.json
+├ routes
+│   └ contact.js
 │
 └ public
+   ├ index.html
    ├ contact.html
-   ├ admin.html
-   └ admin.js
+   ├ script.js
+   └ style.css
 ```
 
 ## API Endpoints
-
-POST /api/contact
-Create a new message
-
-GET /api/contact
-Get all messages
-
-DELETE /api/contact/:id
-Delete a message
 
 ### POST /api/contact
 
@@ -151,48 +157,27 @@ Open in browser
 
 http://localhost:3000/contact.html
 
-http://localhost:3000/admin.html
-
 ---
 
 ## Learning Goals
 
 This project was built to practice:
 
-- REST API development with Express
-- Fetch API
-- DOM manipulation
+- Building REST APIs with Express
+- Using the Fetch API
+- Client and server validation
+- File-based data persistence
+- Express Router structure
 - CRUD fundamentals
-- Simple admin dashboard
 
 ---
 
 ## Future Improvements
 
+- Add update functionality (complete CRUD)
 - Add timestamps to messages
-- Add delete confirmation dialog
-- Improve admin UI with CSS
-- Store messages in a database
+- Replace JSON storage with a database (SQLite / PostgreSQL)
+- Improve UI styling
+- Add pagination for large message lists
 
 ---
-
-## Data Flow
-
-```
-Contact Form
-      │
-      ▼
-POST /api/contact
-      │
-      ▼
-messages[]
-      │
-      ▼
-GET /api/messages
-      │
-      ▼
-Admin Table
-      │
-      ▼
-DELETE /api/messages/:id
-```
