@@ -152,6 +152,10 @@ document.addEventListener("DOMContentLoaded", function() {
     function showSuccess(text) {
         message.textContent = text;
         message.style.color = "green";
+
+        setTimeout(() => {
+            message.textContent = "";
+        }, 3000);
     }
 
     function clearErrors() {
