@@ -1,14 +1,30 @@
 # Contact Manager
 
-A simple full-stack contact management application built with Node.js, Express, and Vanilla JavaScript.
+A simple contact management application built with **Node.js, Express, and Vanilla JavaScript**.
 
-Users can submit messages through a contact form, and the application displays stored messages with options to delete them.
+Users can submit messages through a contact form and manage them through a dynamic list interface.
 
-This project was created to practice building a REST API with Express and connecting it to a simple frontend using the Fetch API.
+## Features
+
+- Add contacts through a form
+- Display submitted contacts instantly
+- Delete contacts from the list
+- Data persistence using a JSON file
+- REST API built with Express
+
+## Tech Stack
+
+- Node.js
+- Express
+- Vanilla JavaScript
+- HTML
+- CSS
 
 ---
 
 ## Screenshots
+
+![App Screenshot](./screenshots/app.png)
 
 ### Contact Form
 
@@ -20,142 +36,73 @@ This project was created to practice building a REST API with Express and connec
 
 ---
 
-## Features
-
-- Submit messages through a contact form
-- View submitted messages
-- Delete messages
-- Client-side form validation
-- Server-side validation
-- JSON file persistence (messages.json)
-- Express Router structure
-- Delete confirmation dialog
-- Message count display
-- Auto-hide success message
-- Messages sorted by newest first
-
-CRUD status
-
-- Create ✔
-- Read ✔
-- Delete ✔
-- Update ✖
-
----
-
-## Tech Stack
-
-- Node.js
-- Express
-- Vanilla JavaScript
-- HTML / CSS
-
----
-
-## System Architecture
-
-```
-Browser
-   │
-   │ fetch API
-   ▼
-Express Server (server.js)
-   │
-   │ Router
-   ▼
-routes/contact.js
-   │
-   │ File storage
-   ▼
-messages.json
-```
-
-## Data Flow
-
-```
-Contact Form
-      │
-      ▼
-POST /api/contact
-      │
-      ▼
-messages.json
-      │
-      ▼
-GET /api/contact
-      │
-      ▼
-Message List
-      │
-      ▼
-DELETE /api/contact/:id
-```
-
 ## Project Structure
 
 ```
-my-first-website
+contact-manager
 │
-├ server.js
-├ messages.json
-├ routes
-│   └ contact.js
+├── public
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
 │
-└ public
-   ├ index.html
-   ├ contact.html
-   ├ script.js
-   └ style.css
+├── screenshots
+│   └── app.png
+│
+├── messages.json
+├── server.js
+└── README.md
 ```
 
 ## API Endpoints
 
-### POST /api/contact
+### Get all contacts
 
-Create a message
+GET /api/contact
 
-Example request
+Returns all stored contact messages.
 
-```json
+### Create a contact
+
+POST /api/contact
+
+Adds a new contact message.
+
+Request body:
+
 {
-"name": "John",
-"email": "john@example.com",
-"message": "Hello"
+  "name": "John",
+  "email": "john@example.com",
+  "message": "Hello"
 }
-```
 
-### GET /api/messages
+### Delete a contact
 
-Retrieve all messages.
+DELETE /api/contact/:id
 
----
+Deletes a contact by ID.
 
-### DELETE /api/messages/:id
+## Setup
 
-Delete a message.
+1. Clone the repository
 
-Example
-```
-DELETE /api/messages/1772624619725
-```
+git clone https://github.com/your-username/contact-manager.git
 
-## How to Run
+2. Move into the project directory
 
-Clone the repository
+cd contact-manager
 
-git clone https://github.com/yourname/my-first-website.git
-
-Install dependencies
+3. Install dependencies
 
 npm install
 
-Start the server
+4. Start the server
 
 node server.js
 
-Open in browser
+5. Open the application
 
-http://localhost:3000/contact.html
+http://localhost:3000
 
 ---
 
@@ -167,8 +114,7 @@ This project was built to practice:
 - Using the Fetch API
 - Client and server validation
 - File-based data persistence
-- Express Router structure
-- CRUD fundamentals
+- REST API design with Express
 
 ---
 
