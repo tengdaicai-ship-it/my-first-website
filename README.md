@@ -24,7 +24,9 @@ Users can submit messages through a contact form and manage them through a dynam
 
 ## Screenshots
 
-![App Screenshot](./screenshots/app.png)
+### Main Interface
+
+![Main UI](./screenshots/app.png)
 
 ### Contact Form
 
@@ -47,7 +49,9 @@ contact-manager
 │   └── style.css
 │
 ├── screenshots
-│   └── app.png
+│   ├── app.png
+│   ├── contact.png
+│   └── admin.png
 │
 ├── messages.json
 ├── server.js
