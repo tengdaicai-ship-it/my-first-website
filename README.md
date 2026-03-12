@@ -1,16 +1,27 @@
 # Contact Manager
 
-A simple contact management application built with **Node.js, Express, and Vanilla JavaScript**.
+A simple full-stack contact management application built with Node.js, Express, and Vanilla JavaScript.
 
-Users can submit messages through a contact form and manage them through a dynamic list interface.
+The project demonstrates REST API design, client-server communication using Fetch, and JSON-based data persistence.
+
+## Demo
+
+This application allows users to submit messages through a contact form.
+Submitted messages are displayed instantly and can be removed from the list.
+
+Main features demonstrated in this project:
+
+- REST API with Express
+- Fetch API communication
+- JSON-based data persistence
 
 ## Features
 
-- Add contacts through a form
-- Display submitted contacts instantly
-- Delete contacts from the list
-- Data persistence using a JSON file
-- REST API built with Express
+- Submit contact messages through a form
+- Display stored messages dynamically
+- Delete messages from the list
+- RESTful API built with Express
+- File-based persistence using JSON
 
 ## Tech Stack
 
@@ -60,51 +71,22 @@ contact-manager
 
 ## API Endpoints
 
-### Get all contacts
-
-GET /api/contact
-
-Returns all stored contact messages.
-
-### Create a contact
-
-POST /api/contact
-
-Adds a new contact message.
-
-Request body:
-
-{
-  "name": "John",
-  "email": "john@example.com",
-  "message": "Hello"
-}
-
-### Delete a contact
-
-DELETE /api/contact/:id
-
-Deletes a contact by ID.
+| Method | Endpoint | Description |
+|------|------|-------------|
+| GET | /api/contact | Get all contact messages |
+| POST | /api/contact | Create a new message |
+| DELETE | /api/contact/:id | Delete a message |
 
 ## Setup
 
-1. Clone the repository
-
-git clone https://github.com/your-username/contact-manager.git
-
-2. Move into the project directory
-
+```bash
+git clone https://github.com/tengdaicai-ship-it/my-first-website.git
 cd contact-manager
-
-3. Install dependencies
-
 npm install
-
-4. Start the server
-
 node server.js
+```
 
-5. Open the application
+Open in browser:
 
 http://localhost:3000
 
@@ -118,7 +100,7 @@ This project was built to practice:
 - Using the Fetch API
 - Client and server validation
 - File-based data persistence
-- REST API design with Express
+- Understanding CRUD fundamentals
 
 ---
 
